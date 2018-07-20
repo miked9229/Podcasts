@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import Alamofire
 
 class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
-    let podcasts = [
+    var podcasts = [
         
-         Podcast(name: "Lets Build That App", artistName: "Brian Voong"),
-         Podcast(name: "Some Podcast", artistName: "Some Author")
+         Podcast(trackName: "Lets Build That App", artistName: "Brian Voong"),
+         Podcast(trackName: "Some Podcast", artistName: "Some Author")
     ]
     
     let cellid = "cellid"
@@ -44,8 +45,47 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
         //later implement Alamao Fire to search iTunes API
+        
+//        let url = "https://itunes.apple.com/search?term=\(searchText)"
+        
+        let url = "https://itunes.apple.com/search"
+        
+        let parameters = ["term": searchText, "media": "podcasts"]
+        
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (dataResponse) in
+            if let err = dataResponse.error {
+                print("Failed to contact server!", err)
+                return
+                
+            }
+            
+            guard let data = dataResponse.data else { return }
+            
+            do {
+                
+                let searchResult = try JSONDecoder().decode(SearchResults.self, from: data)
+                self.podcasts = searchResult.results
+                self.tableView.reloadData()
+                
+                
+            } catch let decodeError {
+                print("Failed to decode:", decodeError)
+            }
+        }
     }
-    
+        
+        
+        
+        
+        
+        
+        
+
+    struct SearchResults: Decodable {
+        let resultCount: Int
+        let results: [Podcast]
+        
+    }
     
     //MARK:- UITableView
     
@@ -65,7 +105,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath)
         
         let podcast = self.podcasts[indexPath.row]
-        cell.textLabel?.text = "\(podcast.name)\n\(podcast.artistName)"
+        cell.textLabel?.text = "\(podcast.trackName ?? "")\n\(podcast.artistName ?? "")"
         cell.imageView?.image = #imageLiteral(resourceName: "appicon")
         cell.textLabel?.numberOfLines = -1
         return cell
