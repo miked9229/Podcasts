@@ -43,49 +43,11 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
-        //later implement Alamao Fire to search iTunes API
-        
-//        let url = "https://itunes.apple.com/search?term=\(searchText)"
-        
-        let url = "https://itunes.apple.com/search"
-        
-        let parameters = ["term": searchText, "media": "podcasts"]
-        
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (dataResponse) in
-            if let err = dataResponse.error {
-                print("Failed to contact server!", err)
-                return
-                
-            }
-            
-            guard let data = dataResponse.data else { return }
-            
-            do {
-                
-                let searchResult = try JSONDecoder().decode(SearchResults.self, from: data)
-                self.podcasts = searchResult.results
-                self.tableView.reloadData()
-                
-                
-            } catch let decodeError {
-                print("Failed to decode:", decodeError)
-            }
+        APIService.shared.fetchPodcasts(searchText: searchText) { (podcasts) in
+            self.podcasts = podcasts
+            self.tableView.reloadData()
         }
-    }
-        
-        
-        
-        
-        
-        
-        
-
-    struct SearchResults: Decodable {
-        let resultCount: Int
-        let results: [Podcast]
-        
-    }
+}
     
     //MARK:- UITableView
     
@@ -100,7 +62,6 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         return podcasts.count
     }
     
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath)
         
