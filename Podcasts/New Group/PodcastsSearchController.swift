@@ -11,11 +11,7 @@ import Alamofire
 
 class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
-    var podcasts = [
-        
-         Podcast(trackName: "Lets Build That App", artistName: "Brian Voong"),
-         Podcast(trackName: "Some Podcast", artistName: "Some Author")
-    ]
+    var podcasts = [Podcast]()
     
     let cellid = "cellid"
     
@@ -52,8 +48,11 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     //MARK:- UITableView
     
     fileprivate func setupTableView() {
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellid)
+//
+//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellid)
+//
+        let nib = UINib(nibName: "PodcastCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: cellid)
         
     }
     
@@ -63,13 +62,20 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath) as! PodcastCell
         
-        let podcast = self.podcasts[indexPath.row]
-        cell.textLabel?.text = "\(podcast.trackName ?? "")\n\(podcast.artistName ?? "")"
-        cell.imageView?.image = #imageLiteral(resourceName: "appicon")
-        cell.textLabel?.numberOfLines = -1
+        cell.podcast = self.podcasts[indexPath.row]
+        
+        
+//        let podcast = self.podcasts[indexPath.row]
+//        cell.textLabel?.text = "\(podcast.trackName ?? "")\n\(podcast.artistName ?? "")"
+//        cell.imageView?.image = #imageLiteral(resourceName: "appicon")
+//        cell.textLabel?.numberOfLines = -1
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 132
     }
     
 }
