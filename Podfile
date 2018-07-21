@@ -1,4 +1,4 @@
-# Uncomment the next line to define a global platform for your project
+ # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
 target 'Podcasts' do
@@ -7,6 +7,7 @@ target 'Podcasts' do
 
   # Pods for Podcasts
   pod 'Alamofire', '~> 4.6'
+  pod 'SDWebImage', '~> 4.0'
 
   target 'PodcastsTests' do
     inherit! :search_paths

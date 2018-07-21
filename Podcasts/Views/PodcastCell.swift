@@ -25,6 +25,25 @@ class PodcastCell: UITableViewCell {
             
             episodeCountLabel.text = "\(podcast.trackCount ?? 0) Episodes"
             
+            
+            print("Loading artwork with url:", podcast.artworkUrl600 ?? "")
+            
+            
+            guard let url = URL(string:  podcast.artworkUrl600 ?? "") else { return }
+            URLSession.shared.dataTask(with: url) { (data, _, _) in
+                print("Finished loading data:", data ?? "")
+                
+                
+                guard let data = data else { return }
+                
+                DispatchQueue.main.async {
+                    self.podcastImageView.image = UIImage(data: data)
+                }
+                
+             
+                
+            }.resume()
+            
         }
     }
 
