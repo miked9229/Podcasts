@@ -29,7 +29,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     //MARK:- Setup Work
     
     fileprivate func setupSearchBar() {
-    
+    self.definesPresentationContext = true
     navigationItem.searchController = searchController
     navigationItem.hidesSearchBarWhenScrolling = false
     searchController.dimsBackgroundDuringPresentation = false
@@ -47,13 +47,35 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
     //MARK:- UITableView
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let episodesController = EpisodesController()
+        let podcast = podcasts[indexPath.row]
+        episodesController.podcast = podcast
+        navigationController?.pushViewController(episodesController, animated: true)
+        print(indexPath.row)
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Please enter a search Term"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        return label
+    }
+    
     fileprivate func setupTableView() {
-//
-//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellid)
-//
+        
+        tableView.tableFooterView = UIView()
         let nib = UINib(nibName: "PodcastCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellid)
         
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        //ternary operator
+        return self.podcasts.count > 0 ? 0: 250
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,7 +88,6 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         
         cell.podcast = self.podcasts[indexPath.row]
         
-
         return cell
     }
     
