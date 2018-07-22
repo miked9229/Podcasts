@@ -17,7 +17,6 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +33,6 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     navigationItem.hidesSearchBarWhenScrolling = false
     searchController.dimsBackgroundDuringPresentation = false
     searchController.searchBar.delegate = self
-    
     
     }
     

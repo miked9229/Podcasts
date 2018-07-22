@@ -8,6 +8,7 @@ target 'Podcasts' do
   # Pods for Podcasts
   pod 'Alamofire', '~> 4.6'
   pod 'SDWebImage', '~> 4.0'
+  pod 'FeedKit', '~> 7.0.1'
 
   target 'PodcastsTests' do
     inherit! :search_paths
