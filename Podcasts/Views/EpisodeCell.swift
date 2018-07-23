@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class EpisodeCell: UITableViewCell {
     
@@ -22,6 +23,10 @@ class EpisodeCell: UITableViewCell {
             pubDateLabel.text = dateFormatter.string(from: episode.pubDate!)
             
             
+            guard let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "") else { return }
+            episodeImageView.sd_setImage(with: url)
+        
+        
         }
     }
     
