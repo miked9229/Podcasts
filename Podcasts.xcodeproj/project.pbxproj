@@ -27,6 +27,8 @@
 		92B1E96321052033001A1869 /* EpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B1E96121052033001A1869 /* EpisodeCell.xib */; };
 		92B1E966210569EA001A1869 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B1E965210569EA001A1869 /* String.swift */; };
 		92B1E96821056B8A001A1869 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B1E96721056B8A001A1869 /* RSSFeed.swift */; };
+		92B1E96A2106BF60001A1869 /* PlayerDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B1E9692106BF60001A1869 /* PlayerDetailView.xib */; };
+		92B1E96C2106C393001A1869 /* PlayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B1E96B2106C393001A1869 /* PlayerDetailView.swift */; };
 		A50D936E9C358628D8AD7C03 /* Pods_PodcastsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A527656CC72A37AFBE9F2A44 /* Pods_PodcastsTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +79,8 @@
 		92B1E96121052033001A1869 /* EpisodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EpisodeCell.xib; sourceTree = "<group>"; };
 		92B1E965210569EA001A1869 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		92B1E96721056B8A001A1869 /* RSSFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeed.swift; sourceTree = "<group>"; };
+		92B1E9692106BF60001A1869 /* PlayerDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerDetailView.xib; sourceTree = "<group>"; };
+		92B1E96B2106C393001A1869 /* PlayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailView.swift; sourceTree = "<group>"; };
 		A527656CC72A37AFBE9F2A44 /* Pods_PodcastsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodcastsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7AB1D05722A2EB7189A0E65 /* Pods-Podcasts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcasts.release.xcconfig"; path = "Pods/Target Support Files/Pods-Podcasts/Pods-Podcasts.release.xcconfig"; sourceTree = "<group>"; };
 		AC121E53D3E12C7CD48DDB90 /* Pods-PodcastsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastsTests/Pods-PodcastsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 				92B1E95A21026771001A1869 /* PodcastCell.swift */,
 				92B1E96021052033001A1869 /* EpisodeCell.swift */,
 				92B1E96121052033001A1869 /* EpisodeCell.xib */,
+				92B1E9692106BF60001A1869 /* PlayerDetailView.xib */,
+				92B1E96B2106C393001A1869 /* PlayerDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 				92B1E92220FA35C2001A1869 /* LaunchScreen.storyboard in Resources */,
 				92B1E96321052033001A1869 /* EpisodeCell.xib in Resources */,
 				92B1E91F20FA35C2001A1869 /* Assets.xcassets in Resources */,
+				92B1E96A2106BF60001A1869 /* PlayerDetailView.xib in Resources */,
 				92B1E955210261BB001A1869 /* PodcastCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,6 +468,7 @@
 				92B1E94620FA38BA001A1869 /* MainTabBarController.swift in Sources */,
 				92B1E95D2103BF6A001A1869 /* EpisodesController.swift in Sources */,
 				92B1E94C20FD7E60001A1869 /* PodcastsSearchController.swift in Sources */,
+				92B1E96C2106C393001A1869 /* PlayerDetailView.swift in Sources */,
 				92B1E96221052033001A1869 /* EpisodeCell.swift in Sources */,
 				92B1E95221017014001A1869 /* APIService.swift in Sources */,
 				92B1E94F20FD7FDA001A1869 /* Podcast.swift in Sources */,

@@ -24,35 +24,17 @@ class EpisodesController: UITableViewController {
         
         guard let feedUrl = podcast?.feedUrl else { return }
         
-        let secureFeedUrl = feedUrl.contains("https") ? feedUrl : feedUrl.replacingOccurrences(of: "http", with: "https")
         
-        guard let url = URL(string: secureFeedUrl) else { return }
-        
-        let parser = FeedParser(URL: url)
-        parser?.parseAsync(result: { (result) in
+        APIService.shared.fetchEpisodes(feedUrl: feedUrl) { (episodes) in
+            self.episodes = episodes
             
-            switch result {
-            
-            case let .rss(feed):
-                
-                self.episodes = feed.toEpisodes()
-                DispatchQueue.main.async {
-                   
-                    self.tableView.reloadData()
-                    
-                }
-                
-                break
-
-            case let .failure(error):
-                
-                print("Failed to parse feed:", error)
-                break
-                
-            default:
-                print("Found a feed....")
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
-        })
+        
+        }
+        
+        
     }
     
 
@@ -77,6 +59,23 @@ class EpisodesController: UITableViewController {
     }
     
     //MARK:- UITableView
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let episode = self.episodes[indexPath.row]
+    
+        let window = UIApplication.shared.keyWindow
+        
+        let playerDetailView = Bundle.main.loadNibNamed("PlayerDetailView", owner: self, options: nil)?.first as! PlayerDetailView
+        
+        playerDetailView.episode = episode
+
+        
+        playerDetailView.frame = self.view.frame
+        window?.addSubview(playerDetailView)
+    
+    
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return episodes.count
