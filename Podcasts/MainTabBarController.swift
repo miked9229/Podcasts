@@ -33,7 +33,6 @@ class MainTabBarController: UITabBarController {
         
     }
     
-    
     //MARK:- Helper Functions
     
     fileprivate func generateNavigationController(with rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {

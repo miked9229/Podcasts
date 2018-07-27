@@ -90,33 +90,36 @@
                                     <rect key="frame" x="0.0" y="0.0" width="48.666666666666664" height="182"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJl-6a-IaD">
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJl-6a-IaD">
                                     <rect key="frame" x="48.666666666666671" y="0.0" width="44" height="182"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="44" id="QBT-5C-25A"/>
                                     </constraints>
+                                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <state key="normal" title="Button" image="rewind15"/>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cBu-Qo-huz">
                                     <rect key="frame" x="92.666666666666671" y="0.0" width="49.000000000000014" height="182"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYh-X3-3xt">
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYh-X3-3xt">
                                     <rect key="frame" x="141.66666666666666" y="0.0" width="54" height="182"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="54" id="3gk-xP-cdy"/>
                                     </constraints>
+                                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <state key="normal" title="Button" image="play"/>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="igC-6r-9E6">
                                     <rect key="frame" x="195.66666666666666" y="0.0" width="38.666666666666657" height="182"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCh-FL-CGL">
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCh-FL-CGL">
                                     <rect key="frame" x="234.33333333333331" y="0.0" width="44" height="182"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="44" id="AVU-dX-ycg"/>
                                     </constraints>
+                                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <state key="normal" title="Button" image="fastforward15"/>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Qa-Sl-4IX">
