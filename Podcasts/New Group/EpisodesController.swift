@@ -34,10 +34,8 @@ class EpisodesController: UITableViewController {
         
         }
         
-        
     }
     
-
     fileprivate let cellid = "cellid"
     
     var episodes = [Episode]()
@@ -60,19 +58,37 @@ class EpisodesController: UITableViewController {
     
     //MARK:- UITableView
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicator.color = .darkGray
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return episodes.isEmpty ? 200 : 0
+    }
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let episode = self.episodes[indexPath.row]
-    
-        let window = UIApplication.shared.keyWindow
+       
+         let episode = self.episodes[indexPath.row]
+        let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
         
-        let playerDetailView = Bundle.main.loadNibNamed("PlayerDetailView", owner: self, options: nil)?.first as! PlayerDetailView
+        mainTabBarController?.maximizePlayerDetails(episode: episode)
         
-        playerDetailView.episode = episode
-
         
-        playerDetailView.frame = self.view.frame
-        window?.addSubview(playerDetailView)
+//        let episode = self.episodes[indexPath.row]
+//
+//        let window = UIApplication.shared.keyWindow
+//
+//        let playerDetailView = PlayerDetailView.initFromNib()
+//
+//        playerDetailView.episode = episode
+//
+//
+//        playerDetailView.frame = self.view.frame
+//        window?.addSubview(playerDetailView)
     
     
     }
