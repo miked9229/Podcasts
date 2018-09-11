@@ -64,7 +64,6 @@ class MainTabBarController: UITabBarController {
         
     }
     
-    
     let playerDetailsView = PlayerDetailView.initFromNib()
     
     var maximizedTopLayoutConstraint: NSLayoutConstraint!

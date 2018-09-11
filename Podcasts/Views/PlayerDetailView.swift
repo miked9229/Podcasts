@@ -113,13 +113,7 @@ class PlayerDetailView: UIView {
         }
     }
     
-    
-    
     @IBOutlet var miniFastForwardButton: UIButton!
-    
-    
-    
-    
     @IBOutlet var miniPlayerView: UIView!
     @IBOutlet var maximizedStackView: UIStackView!
     
