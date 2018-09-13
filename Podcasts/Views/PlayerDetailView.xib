@@ -20,6 +20,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfx-Wy-Yxq">
                     <rect key="frame" x="0.0" y="44" width="375" height="64"/>
                     <subviews>
+                        <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3gu-bw-u9E">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="0.66666666666666663"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="t6v-8F-01r"/>
+                            </constraints>
+                        </view>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7hw-B4-hOB">
                             <rect key="frame" x="8" y="8" width="359" height="48"/>
                             <subviews>
@@ -56,10 +63,13 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="3gu-bw-u9E" firstAttribute="leading" secondItem="pfx-Wy-Yxq" secondAttribute="leading" id="2en-bC-TrT"/>
                         <constraint firstAttribute="height" constant="64" id="9Yo-fr-Hna"/>
+                        <constraint firstItem="3gu-bw-u9E" firstAttribute="top" secondItem="pfx-Wy-Yxq" secondAttribute="top" id="Gd4-Xx-MNF"/>
                         <constraint firstAttribute="bottom" secondItem="7hw-B4-hOB" secondAttribute="bottom" constant="8" id="QHd-s8-7ow"/>
                         <constraint firstItem="7hw-B4-hOB" firstAttribute="leading" secondItem="pfx-Wy-Yxq" secondAttribute="leading" constant="8" id="V1e-b8-bKc"/>
                         <constraint firstItem="7hw-B4-hOB" firstAttribute="top" secondItem="pfx-Wy-Yxq" secondAttribute="top" constant="8" id="fNJ-Zs-tS6"/>
+                        <constraint firstAttribute="trailing" secondItem="3gu-bw-u9E" secondAttribute="trailing" id="r1y-Ly-uSh"/>
                         <constraint firstAttribute="trailing" secondItem="7hw-B4-hOB" secondAttribute="trailing" constant="8" id="rbm-Pw-Qnv"/>
                     </constraints>
                 </view>

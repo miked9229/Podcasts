@@ -24,8 +24,4 @@ extension CMTime {
         return timeFormatString
     
     }
-    
-    
-    
-    
 }

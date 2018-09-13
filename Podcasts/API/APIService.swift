@@ -48,8 +48,6 @@ class APIService {
             
     }
        
-    
-    
     public func fetchPodcasts(searchText: String, completionHandler: @escaping ([Podcast]) -> ()) {
         
         let parameters = ["term": searchText, "media": "podcast"]

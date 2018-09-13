@@ -70,6 +70,7 @@ class PlayerDetailView: UIView {
         
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
         
+        addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
         
         observePlayerCurrentTime()
     
@@ -92,6 +93,32 @@ class PlayerDetailView: UIView {
     deinit {
         print("Deinit occurs")
         
+        
+    }
+    
+    @objc func handlePan(gesture: UIPanGestureRecognizer) {
+     
+        let translation = gesture.translation(in: self.superview)
+        
+        if gesture.state == .began {
+            
+        } else if gesture.state == .changed {
+            self.transform = CGAffineTransform(translationX: 0, y: translation.y)
+            
+            self.maximizedStackView.alpha = -translation.y / 200
+            self.miniPlayerView.alpha = 1 + translation.y / 200
+            
+        } else if gesture.state == .ended {
+            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            
+
+            self.transform = .identity
+            self.miniPlayerView.alpha = 1
+            self.maximizedStackView.alpha = 0
+                
+            }, completion: nil)
+            
+        }
         
     }
     
