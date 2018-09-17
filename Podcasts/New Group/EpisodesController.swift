@@ -24,7 +24,6 @@ class EpisodesController: UITableViewController {
         
         guard let feedUrl = podcast?.feedUrl else { return }
         
-        
         APIService.shared.fetchEpisodes(feedUrl: feedUrl) { (episodes) in
             self.episodes = episodes
             
@@ -69,27 +68,12 @@ class EpisodesController: UITableViewController {
         return episodes.isEmpty ? 200 : 0
     }
     
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
          let episode = self.episodes[indexPath.row]
         let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
         
         mainTabBarController?.maximizePlayerDetails(episode: episode)
-        
-        
-//        let episode = self.episodes[indexPath.row]
-//
-//        let window = UIApplication.shared.keyWindow
-//
-//        let playerDetailView = PlayerDetailView.initFromNib()
-//
-//        playerDetailView.episode = episode
-//
-//
-//        playerDetailView.frame = self.view.frame
-//        window?.addSubview(playerDetailView)
-    
     
     }
     

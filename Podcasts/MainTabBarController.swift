@@ -24,6 +24,7 @@ class MainTabBarController: UITabBarController {
     @objc func minimizePlayerDetails() {
         
         maximizedTopLayoutConstraint.isActive = false
+        bottomAnchorLayoutConstraint.constant = view.frame.height
         minimizedTopLayoutConstraint.isActive = true
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
@@ -39,10 +40,11 @@ class MainTabBarController: UITabBarController {
     }
     
     func maximizePlayerDetails(episode: Episode?) {
-        
+        minimizedTopLayoutConstraint.isActive = false
         maximizedTopLayoutConstraint.isActive = true
         maximizedTopLayoutConstraint.constant = 0
-        minimizedTopLayoutConstraint.isActive = false
+        bottomAnchorLayoutConstraint.constant = 0
+        
         
         if episode != nil {
             
@@ -67,8 +69,8 @@ class MainTabBarController: UITabBarController {
     let playerDetailsView = PlayerDetailView.initFromNib()
     
     var maximizedTopLayoutConstraint: NSLayoutConstraint!
-    
     var minimizedTopLayoutConstraint: NSLayoutConstraint!
+    var bottomAnchorLayoutConstraint: NSLayoutConstraint!
     
     fileprivate func setupPlayerDetailsView() {
         
@@ -82,17 +84,17 @@ class MainTabBarController: UITabBarController {
         maximizedTopLayoutConstraint.isActive = true
         
         
-//        maximizedTopLayoutConstraint.isActive = true
+        bottomAnchorLayoutConstraint =  playerDetailsView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height)
         
+       bottomAnchorLayoutConstraint.isActive = true
+        
+        
+
         minimizedTopLayoutConstraint = playerDetailsView.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -64)
-        
-//        minimizedTopLayoutConstraint.isActive = true
-        
         
         playerDetailsView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         playerDetailsView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        playerDetailsView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
+
 
         
     }
