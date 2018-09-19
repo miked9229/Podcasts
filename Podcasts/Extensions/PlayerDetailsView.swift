@@ -51,7 +51,6 @@ extension PlayerDetailView {
                 let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
                 
                 mainTabBarController?.maximizePlayerDetails(episode: nil)
-                gesture.isEnabled = false
             } else {
                 
                 self.miniPlayerView.alpha = 1
@@ -64,7 +63,6 @@ extension PlayerDetailView {
     @objc func handleTapMaximize() {
         let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
         mainTabBarController?.maximizePlayerDetails(episode: nil)
-        panGesture.isEnabled = false
     }
     
     

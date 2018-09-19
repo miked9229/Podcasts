@@ -66,13 +66,42 @@ class PlayerDetailView: UIView {
     
     var panGesture: UIPanGestureRecognizer!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+    fileprivate func setupGestures() {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
         
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-        addGestureRecognizer(panGesture)
+        miniPlayerView.addGestureRecognizer(panGesture)
+        
+        maximizedStackView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismissalPan)))
+    }
+    
+    @objc func handleDismissalPan(gesture: UIPanGestureRecognizer) {
+    
+        if gesture.state == .changed {
+            let translation = gesture.translation(in: self.superview)
+            maximizedStackView.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        } else if gesture.state == .ended {
+            let translation = gesture.translation(in: self.superview)
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                
+                self.maximizedStackView.transform = .identity
+                
+                if translation.y > 50 {
+                    
+                    UIApplication.mainTabBarController()?.minimizePlayerDetails()
+                }
+            
+            })
+            
+            
+        }
+        
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        setupGestures()
         
         observePlayerCurrentTime()
     
@@ -97,8 +126,6 @@ class PlayerDetailView: UIView {
         
         
     }
-    
-
     
     //MARK:- IB Actions and IB Outlets
     
@@ -162,10 +189,7 @@ class PlayerDetailView: UIView {
     
     @IBAction func handleDismiss(_ sender: Any) {
     
-        panGesture.isEnabled = true
-
-        let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        mainTabBarController?.minimizePlayerDetails()
+        UIApplication.mainTabBarController()?.minimizePlayerDetails()
         
     }
     
