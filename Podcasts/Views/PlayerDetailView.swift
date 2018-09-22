@@ -98,8 +98,25 @@ class PlayerDetailView: UIView {
         
     }
     
+    
+    
+    fileprivate func setupAudioSession() {
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+        } catch let SessionErr {
+            print("Failed to activate session: ",  SessionErr)
+        }
+        
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        setupAudioSession()
         
         setupGestures()
         
@@ -115,6 +132,7 @@ class PlayerDetailView: UIView {
         }
     
     }
+
     
     static func initFromNib() -> PlayerDetailView {
         return Bundle.main.loadNibNamed("PlayerDetailView", owner: self, options: nil)?.first as! PlayerDetailView
