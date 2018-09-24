@@ -110,7 +110,6 @@ class PlayerDetailView: UIView {
             print("Failed to activate session: ",  SessionErr)
         }
         
-        
     }
     
     override func awakeFromNib() {
@@ -141,7 +140,6 @@ class PlayerDetailView: UIView {
     
     deinit {
         print("Deinit occurs")
-        
         
     }
     

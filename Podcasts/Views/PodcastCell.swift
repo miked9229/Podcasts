@@ -12,7 +12,6 @@ import SDWebImage
 
 class PodcastCell: UITableViewCell {
     
-    
     @IBOutlet var podcastImageView: UIImageView!
     @IBOutlet var trackNameLabel: UILabel!
     @IBOutlet var artistNameLabel: UILabel!
