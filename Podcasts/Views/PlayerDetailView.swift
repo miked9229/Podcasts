@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import MediaPlayer
 
 class PlayerDetailView: UIView {
     
@@ -17,15 +18,46 @@ class PlayerDetailView: UIView {
             titleLabel.text = episode.title
             authorLabel.text = episode.author
             
+            
+            setupNowPlayingInfo()
+            
+            
             PlayEpisode()
 
             guard let url = URL(string: episode.imageUrl ?? "") else { return }
             episodeImageView.sd_setImage(with: url)
-            miniEpisodeImageView.sd_setImage(with: url)
+//            miniEpisodeImageView.sd_setImage(with: url)
+            
+            miniEpisodeImageView.sd_setImage(with: url) { (image, _, _, _) in
+        
+                
+                var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo
+                
+                
+                
+                
+                
+                MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+            }
 
         }
         
     }
+    
+    
+    fileprivate func  setupNowPlayingInfo() {
+        
+        var nowPlayingInfo = [String: Any]()
+        
+        nowPlayingInfo[MPMediaItemPropertyTitle] = episode.title
+        nowPlayingInfo[MPMediaItemPropertyArtist] = episode.author
+        
+        
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        
+    }
+    
     
     public func PlayEpisode() {
         
@@ -98,8 +130,6 @@ class PlayerDetailView: UIView {
         
     }
     
-    
-    
     fileprivate func setupAudioSession() {
         
         do {
@@ -112,10 +142,50 @@ class PlayerDetailView: UIView {
         
     }
     
+    fileprivate func setupRemoteControl() {
+    
+        print("Trying to set up....")
+    UIApplication.shared.beginReceivingRemoteControlEvents()
+    
+    let commandCenter = MPRemoteCommandCenter.shared()
+        
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.player.play()
+            
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            self.miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            return .success
+        }
+    
+        
+        
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.player.pause()
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            self.miniPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            return .success
+        }
+     
+        
+        commandCenter.togglePlayPauseCommand.isEnabled = true
+        commandCenter.togglePlayPauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            
+            self.handlePlayPause()
+            
+            return .success
+        }
+        
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         setupAudioSession()
+        
+        setupRemoteControl()
         
         setupGestures()
         
