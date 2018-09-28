@@ -21,21 +21,24 @@ class PlayerDetailView: UIView {
             
             setupNowPlayingInfo()
             
-            
             PlayEpisode()
 
             guard let url = URL(string: episode.imageUrl ?? "") else { return }
             episodeImageView.sd_setImage(with: url)
-//            miniEpisodeImageView.sd_setImage(with: url)
             
             miniEpisodeImageView.sd_setImage(with: url) { (image, _, _, _) in
         
+                guard let image = image else { return }
                 
                 var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo
                 
+                // Some modifications here
                 
+                let artwork = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { (_) -> UIImage in
+                    return image
+                })
                 
-                
+                nowPlayingInfo?[MPMediaItemPropertyArtwork] = artwork
                 
                 MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
             }
@@ -81,9 +84,34 @@ class PlayerDetailView: UIView {
             let duration = self?.player.currentItem?.duration
             self?.durationLabel.text = duration?.toDisplayString()
             
+            
+            self?.setupLockscreenCurrentTime()
+            
             self?.updateCurrentTimeSlider()
             
         }
+    }
+    
+    fileprivate func setupLockscreenCurrentTime() {
+        
+        var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo
+        
+        
+        // some modifications here
+        
+        guard let currentItem = player.currentItem else { return }
+        let durationInSeconds = CMTimeGetSeconds(currentItem.duration)
+        
+        
+        let elapsedTime = CMTimeGetSeconds(player.currentTime())
+        nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = elapsedTime
+        nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = durationInSeconds
+        
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        
+        
+        
     }
     
     fileprivate func updateCurrentTimeSlider() {
@@ -160,6 +188,10 @@ class PlayerDetailView: UIView {
     
         
         
+        
+        
+        
+        
         commandCenter.pauseCommand.isEnabled = true
         commandCenter.pauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
             self.player.pause()
@@ -184,11 +216,8 @@ class PlayerDetailView: UIView {
         super.awakeFromNib()
         
         setupAudioSession()
-        
         setupRemoteControl()
-        
         setupGestures()
-        
         observePlayerCurrentTime()
     
         let time = CMTimeMake(1, 3)

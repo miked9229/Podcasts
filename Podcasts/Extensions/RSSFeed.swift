@@ -27,10 +27,8 @@ extension RSSFeed {
             
         })
         
-        
         return episodes
         
     }
-    
 
 }

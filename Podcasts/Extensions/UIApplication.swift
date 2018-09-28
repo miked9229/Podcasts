@@ -15,7 +15,6 @@ extension UIApplication {
     
         return shared.keyWindow?.rootViewController as? MainTabBarController
     
-    
     }
     
 }

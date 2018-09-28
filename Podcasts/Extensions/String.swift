@@ -15,6 +15,4 @@ extension String {
         return self.contains("https") ? self : self.replacingOccurrences(of: "http", with: "https")
     }
     
-    
-    
 }
