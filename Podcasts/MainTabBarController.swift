@@ -39,7 +39,7 @@ class MainTabBarController: UITabBarController {
         })
     }
     
-    func maximizePlayerDetails(episode: Episode?) {
+    func maximizePlayerDetails(episode: Episode?, playlistEpisodes: [Episode] = []) {
         minimizedTopLayoutConstraint.isActive = false
         maximizedTopLayoutConstraint.isActive = true
         maximizedTopLayoutConstraint.constant = 0
@@ -51,6 +51,8 @@ class MainTabBarController: UITabBarController {
             playerDetailsView.episode = episode
             
         }
+        
+        playerDetailsView.playlistEpisodes = playlistEpisodes 
         
 
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {

@@ -17,7 +17,6 @@ struct Episode {
     let streamUrl: String?
     let author: String?
     
-    
     init(feedItem: RSSFeedItem) {
         
         self.streamUrl = feedItem.enclosure?.attributes?.url ?? ""
@@ -27,7 +26,6 @@ struct Episode {
         feedItem.description ?? ""
         self.imageUrl = feedItem.iTunes?.iTunesImage?.attributes?.href
         self.author = feedItem.iTunes?.iTunesAuthor  ?? ""
-        
     
     }
 }

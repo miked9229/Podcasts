@@ -18,7 +18,6 @@ class PlayerDetailView: UIView {
             titleLabel.text = episode.title
             authorLabel.text = episode.author
             
-            
             setupNowPlayingInfo()
             
             PlayEpisode()
@@ -51,8 +50,6 @@ class PlayerDetailView: UIView {
         
         nowPlayingInfo[MPMediaItemPropertyTitle] = episode.title
         nowPlayingInfo[MPMediaItemPropertyArtist] = episode.author
-        
-        
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
         
@@ -146,7 +143,6 @@ class PlayerDetailView: UIView {
     
     fileprivate func setupRemoteControl() {
     
-        print("Trying to set up....")
     UIApplication.shared.beginReceivingRemoteControlEvents()
     
     let commandCenter = MPRemoteCommandCenter.shared()
@@ -182,7 +178,54 @@ class PlayerDetailView: UIView {
             return .success
         }
         
+        commandCenter.nextTrackCommand.addTarget(self, action: #selector(handleNextTrack))
+        commandCenter.previousTrackCommand.addTarget(self, action: #selector(handlePreviousTrack))
         
+        
+    }
+    
+    var playlistEpisodes = [Episode]()
+    
+    
+
+    @objc fileprivate func handlePreviousTrack() {
+    
+    // 1. check if playlist.Episodes count is 0
+    // 2. Find out current episode index
+    // 3. If Episode index is 0, need to wrap to the end of the list somehow
+        // otherwise wrap around to the end of the list.
+    
+        // TODO
+        
+    
+    
+    }
+    
+    
+    
+    @objc fileprivate func handleNextTrack() {
+
+        
+        if playlistEpisodes.count == 0 {
+            return
+        }
+    
+        let currentEpisodeIndex = playlistEpisodes.firstIndex { (ep) -> Bool in
+            return self.episode.title == ep.title
+        }
+        
+        
+     guard let index = currentEpisodeIndex else { return }
+
+        let nextEpisode: Episode
+        if index == playlistEpisodes.count - 1 {
+            nextEpisode = playlistEpisodes[0]
+            
+        } else {
+            nextEpisode = playlistEpisodes[index + 1]
+        }
+
+        self.episode = nextEpisode
     }
     
     fileprivate func setupElapsedTime() {
@@ -217,8 +260,8 @@ class PlayerDetailView: UIView {
     }
     
     override func awakeFromNib() {
-        super.awakeFromNib()
         
+        super.awakeFromNib()
         setupAudioSession()
         setupRemoteControl()
         setupGestures()
@@ -231,7 +274,6 @@ class PlayerDetailView: UIView {
     static func initFromNib() -> PlayerDetailView {
         return Bundle.main.loadNibNamed("PlayerDetailView", owner: self, options: nil)?.first as! PlayerDetailView
     }
-    
     
     deinit {
         print("Deinit occurs")
@@ -268,7 +310,6 @@ class PlayerDetailView: UIView {
         player.seek(to: seekTime)
     
     }
-    
     
     @IBAction func handleRewind(_ sender: Any) {
         seekToCurrentTime(delta: -15)
