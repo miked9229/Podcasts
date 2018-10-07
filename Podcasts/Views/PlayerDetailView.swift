@@ -19,7 +19,7 @@ class PlayerDetailView: UIView {
             authorLabel.text = episode.author
             
             setupNowPlayingInfo()
-            
+            setupAudioSession()
             PlayEpisode()
 
             guard let url = URL(string: episode.imageUrl ?? "") else { return }
@@ -149,24 +149,22 @@ class PlayerDetailView: UIView {
         
         commandCenter.playCommand.isEnabled = true
         commandCenter.playCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
-            self.player.play()
             
+            self.player.play()
             self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             self.miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-            
-            self.setupElapsedTime()
-            
+            self.setupElapsedTime(playbackRate: 1)
             return .success
         }
     
         
         commandCenter.pauseCommand.isEnabled = true
         commandCenter.pauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            
             self.player.pause()
             self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             self.miniPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
-            
-            self.setupElapsedTime()
+            self.setupElapsedTime(playbackRate: 0)
             return .success
         }
      
@@ -201,8 +199,6 @@ class PlayerDetailView: UIView {
     
     }
     
-    
-    
     @objc fileprivate func handleNextTrack() {
 
         
@@ -228,11 +224,14 @@ class PlayerDetailView: UIView {
         self.episode = nextEpisode
     }
     
-    fileprivate func setupElapsedTime() {
+    fileprivate func setupElapsedTime(playbackRate: Float) {
         
         let elapsedTime = CMTimeGetSeconds(player.currentTime())
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = elapsedTime
+        
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = playbackRate
         
     }
     
@@ -259,13 +258,55 @@ class PlayerDetailView: UIView {
         
     }
     
+    fileprivate func setupInterruptionObserver() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleInterruption), name: .AVAudioSessionInterruption, object: nil)
+    }
+    
+    @objc fileprivate func handleInterruption(notification: NSNotification) {
+        
+        print("Interruption Observation observed...")
+        
+        
+        guard let userInfo = notification.userInfo else { return }
+        
+        
+        guard let type = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt else { return }
+        
+        if type == AVAudioSessionInterruptionType.began.rawValue {
+            
+            print("Interruption began....")
+            
+            playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            miniPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            
+            
+        } else {
+            
+            guard let options = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
+            
+            if options == AVAudioSessionInterruptionOptions.shouldResume.rawValue {
+                
+                player.play()
+                playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+                miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+                
+            }
+            
+            print("Interruption ended...")
+
+        
+        }
+        
+    }
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()
-        setupAudioSession()
         setupRemoteControl()
         setupGestures()
         observePlayerCurrentTime()
+        setupInterruptionObserver()
         observeBoundaryTime()
     
     }
@@ -393,11 +434,14 @@ class PlayerDetailView: UIView {
             miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             player.pause()
             enlargeEpisodeImageView()
+            setupElapsedTime(playbackRate: 1)
+            
         } else {
              playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
              miniPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
              player.play()
             shrinkEpisodeImageView()
+            setupElapsedTime(playbackRate: 0)
         }
     }
     
