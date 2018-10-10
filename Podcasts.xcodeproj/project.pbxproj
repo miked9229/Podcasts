@@ -12,6 +12,7 @@
 		923EFB092152D3770025FF8E /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923EFB082152D3770025FF8E /* UIApplication.swift */; };
 		92471098214F491D00F4CAE3 /* PlayerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92471097214F491D00F4CAE3 /* PlayerDetailsView.swift */; };
 		9256FEF1210D0E93008A107A /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9256FEF0210D0E93008A107A /* CMTime.swift */; };
+		927E077E216D94C300D0EF04 /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927E077D216D94C300D0EF04 /* FavoritesController.swift */; };
 		92B1E91820FA35B9001A1869 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B1E91720FA35B9001A1869 /* AppDelegate.swift */; };
 		92B1E91A20FA35B9001A1869 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B1E91920FA35B9001A1869 /* ViewController.swift */; };
 		92B1E91F20FA35C2001A1869 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92B1E91E20FA35C2001A1869 /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		923EFB082152D3770025FF8E /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		92471097214F491D00F4CAE3 /* PlayerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailsView.swift; sourceTree = "<group>"; };
 		9256FEF0210D0E93008A107A /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
+		927E077D216D94C300D0EF04 /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
 		92B1E91420FA35B9001A1869 /* Podcasts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcasts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B1E91720FA35B9001A1869 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92B1E91920FA35B9001A1869 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			children = (
 				92B1E94B20FD7E60001A1869 /* PodcastsSearchController.swift */,
 				92B1E95C2103BF69001A1869 /* EpisodesController.swift */,
+				927E077D216D94C300D0EF04 /* FavoritesController.swift */,
 			);
 			name = Controllers;
 			path = "New Group";
@@ -478,6 +481,7 @@
 				923EFB092152D3770025FF8E /* UIApplication.swift in Sources */,
 				92471098214F491D00F4CAE3 /* PlayerDetailsView.swift in Sources */,
 				92B1E96821056B8A001A1869 /* RSSFeed.swift in Sources */,
+				927E077E216D94C300D0EF04 /* FavoritesController.swift in Sources */,
 				92B1E91A20FA35B9001A1869 /* ViewController.swift in Sources */,
 				92B1E966210569EA001A1869 /* String.swift in Sources */,
 				92B1E91820FA35B9001A1869 /* AppDelegate.swift in Sources */,

@@ -187,21 +187,31 @@ class PlayerDetailView: UIView {
     
 
     @objc fileprivate func handlePreviousTrack() {
-    
-    // 1. check if playlist.Episodes count is 0
-    // 2. Find out current episode index
-    // 3. If Episode index is 0, need to wrap to the end of the list somehow
-        // otherwise wrap around to the end of the list.
-    
-        // TODO
+
+        if playlistEpisodes.count == 0 {
+            return
+        }
         
-    
+        let currentEpisodeIndex = playlistEpisodes.firstIndex { (ep) -> Bool in
+            return self.episode.title == ep.title
+        }
+        
+        guard let index = currentEpisodeIndex else { return }
+        
+        let previousEpisode: Episode
+        if index == 0 {
+            previousEpisode = playlistEpisodes[playlistEpisodes.count - 1 ]
+            
+        } else {
+            previousEpisode = playlistEpisodes[index - 1]
+        }
+        
+        self.episode = previousEpisode
     
     }
     
     @objc fileprivate func handleNextTrack() {
 
-        
         if playlistEpisodes.count == 0 {
             return
         }
