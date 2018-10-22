@@ -12,6 +12,9 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
     
     fileprivate let cellid = "cellId"
     
+    var podcasts = UserDefaults.standard.savedPodcasts()
+    
+    
     override func viewDidLoad() {
         
         setupCollectionView()
@@ -19,8 +22,49 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
     
     fileprivate func setupCollectionView() {
         
-        collectionView?.backgroundColor = .blue
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellid)
+        
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        
+        
+        
+        
+        collectionView?.backgroundColor = .white
+        collectionView?.register(FavoritePodcastCell.self, forCellWithReuseIdentifier: cellid)
+        
+        collectionView?.addGestureRecognizer(gesture)
+        
+        
+    }
+    
+    @objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
+        
+        
+        let location = gesture.location(in: collectionView)
+        
+        guard let selectedIndexPath = collectionView?.indexPathForItem(at: location) else { return }
+        
+        let alertController = UIAlertController(title: "Remove Podcast", message: nil, preferredStyle: .actionSheet)
+        
+        
+        alertController.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (_) in
+            // Where we remove the podcast object from the collection view
+            self.podcasts.remove(at: selectedIndexPath.item)
+            self.collectionView?.deleteItems(at:[selectedIndexPath])
+            
+            // also remove item from UserDefaults
+            
+            
+        }))
+        
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        
+        present(alertController, animated: true)
+        
+        
+        
+        
         
         
     }
@@ -28,14 +72,19 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
     //MARK:- UICollection View Delegate Methods / Spacing
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return podcasts.count
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellid, for: indexPath)
-        cell.backgroundColor = .black
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellid, for: indexPath) as! FavoritePodcastCell
+        
+        
+        cell.podcast = podcasts[indexPath.item]
+        
+        
+        
         return cell
         
     }
@@ -44,7 +93,7 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
         
         let width = (view.frame.width - 3 * 16) / 2
         
-        return CGSize(width: width, height: width)
+        return CGSize(width: width, height: width + 46)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -13,6 +13,7 @@
 		92471098214F491D00F4CAE3 /* PlayerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92471097214F491D00F4CAE3 /* PlayerDetailsView.swift */; };
 		9256FEF1210D0E93008A107A /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9256FEF0210D0E93008A107A /* CMTime.swift */; };
 		927E077E216D94C300D0EF04 /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927E077D216D94C300D0EF04 /* FavoritesController.swift */; };
+		927E078021702F9300D0EF04 /* FavoritePodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927E077F21702F9300D0EF04 /* FavoritePodcastCell.swift */; };
 		92B1E91820FA35B9001A1869 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B1E91720FA35B9001A1869 /* AppDelegate.swift */; };
 		92B1E91A20FA35B9001A1869 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B1E91920FA35B9001A1869 /* ViewController.swift */; };
 		92B1E91F20FA35C2001A1869 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92B1E91E20FA35C2001A1869 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		92B1E96821056B8A001A1869 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B1E96721056B8A001A1869 /* RSSFeed.swift */; };
 		92B1E96A2106BF60001A1869 /* PlayerDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B1E9692106BF60001A1869 /* PlayerDetailView.xib */; };
 		92B1E96C2106C393001A1869 /* PlayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B1E96B2106C393001A1869 /* PlayerDetailView.swift */; };
+		92F9346B217BFAF000BCEAE7 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F9346A217BFAF000BCEAE7 /* UserDefaults.swift */; };
 		A50D936E9C358628D8AD7C03 /* Pods_PodcastsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A527656CC72A37AFBE9F2A44 /* Pods_PodcastsTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,7 @@
 		92471097214F491D00F4CAE3 /* PlayerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailsView.swift; sourceTree = "<group>"; };
 		9256FEF0210D0E93008A107A /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
 		927E077D216D94C300D0EF04 /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
+		927E077F21702F9300D0EF04 /* FavoritePodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePodcastCell.swift; sourceTree = "<group>"; };
 		92B1E91420FA35B9001A1869 /* Podcasts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcasts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B1E91720FA35B9001A1869 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92B1E91920FA35B9001A1869 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +92,7 @@
 		92B1E96721056B8A001A1869 /* RSSFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeed.swift; sourceTree = "<group>"; };
 		92B1E9692106BF60001A1869 /* PlayerDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerDetailView.xib; sourceTree = "<group>"; };
 		92B1E96B2106C393001A1869 /* PlayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailView.swift; sourceTree = "<group>"; };
+		92F9346A217BFAF000BCEAE7 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		A527656CC72A37AFBE9F2A44 /* Pods_PodcastsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodcastsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7AB1D05722A2EB7189A0E65 /* Pods-Podcasts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcasts.release.xcconfig"; path = "Pods/Target Support Files/Pods-Podcasts/Pods-Podcasts.release.xcconfig"; sourceTree = "<group>"; };
 		AC121E53D3E12C7CD48DDB90 /* Pods-PodcastsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastsTests/Pods-PodcastsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 				92B1E96121052033001A1869 /* EpisodeCell.xib */,
 				92B1E9692106BF60001A1869 /* PlayerDetailView.xib */,
 				92B1E96B2106C393001A1869 /* PlayerDetailView.swift */,
+				927E077F21702F9300D0EF04 /* FavoritePodcastCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 				9256FEF0210D0E93008A107A /* CMTime.swift */,
 				92471097214F491D00F4CAE3 /* PlayerDetailsView.swift */,
 				923EFB082152D3770025FF8E /* UIApplication.swift */,
+				92F9346A217BFAF000BCEAE7 /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -478,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				927E078021702F9300D0EF04 /* FavoritePodcastCell.swift in Sources */,
 				923EFB092152D3770025FF8E /* UIApplication.swift in Sources */,
 				92471098214F491D00F4CAE3 /* PlayerDetailsView.swift in Sources */,
 				92B1E96821056B8A001A1869 /* RSSFeed.swift in Sources */,
@@ -490,6 +497,7 @@
 				92B1E95D2103BF6A001A1869 /* EpisodesController.swift in Sources */,
 				92B1E94C20FD7E60001A1869 /* PodcastsSearchController.swift in Sources */,
 				92B1E96C2106C393001A1869 /* PlayerDetailView.swift in Sources */,
+				92F9346B217BFAF000BCEAE7 /* UserDefaults.swift in Sources */,
 				92B1E96221052033001A1869 /* EpisodeCell.swift in Sources */,
 				92B1E95221017014001A1869 /* APIService.swift in Sources */,
 				92B1E94F20FD7FDA001A1869 /* Podcast.swift in Sources */,

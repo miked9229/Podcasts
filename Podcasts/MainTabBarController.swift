@@ -54,7 +54,6 @@ class MainTabBarController: UITabBarController {
         
         playerDetailsView.playlistEpisodes = playlistEpisodes 
         
-
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             
             
@@ -97,8 +96,6 @@ class MainTabBarController: UITabBarController {
         playerDetailsView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         playerDetailsView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
 
-
-        
     }
     
     func setUpViewControllers() {
@@ -109,8 +106,8 @@ class MainTabBarController: UITabBarController {
         
         viewControllers = [
             
-            generateNavigationController(with: favoritesController, title: "Favorites", image: #imageLiteral(resourceName: "favorites")),
             generateNavigationController(with: PodcastsSearchController(), title: "Search", image: #imageLiteral(resourceName: "search")),
+            generateNavigationController(with: favoritesController, title: "Favorites", image: #imageLiteral(resourceName: "favorites")),
             generateNavigationController(with: ViewController(), title: "Downloads", image: #imageLiteral(resourceName: "downloads"))
             
         ]
