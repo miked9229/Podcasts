@@ -21,7 +21,6 @@ class FavoritePodcastCell: UICollectionViewCell {
             imageView.sd_setImage(with: url)
         }
         
-        
     }
     
     let imageView = UIImageView(image: #imageLiteral(resourceName: "appicon"))

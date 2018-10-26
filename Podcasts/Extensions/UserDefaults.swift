@@ -17,7 +17,6 @@ extension UserDefaults {
     
     func savedPodcasts() -> [Podcast] {
         
-        
         guard let savedPodcastData = UserDefaults.standard.data(forKey: UserDefaults.favoritedPodcastKey) else { return [] }
         
         guard let savedPodcasts = NSKeyedUnarchiver.unarchiveObject(with: savedPodcastData) as? [Podcast] else { return [] }

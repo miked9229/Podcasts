@@ -16,6 +16,10 @@ class Podcast: NSObject, Decodable, NSCoding {
         aCoder.encode(trackName ?? "", forKey: "trackNameKey")
         aCoder.encode(artistName ?? "", forKey: "artistNameKey")
         aCoder.encode(artworkUrl600 ?? "", forKey: "artworkKey")
+        aCoder.encode(feedUrl ?? "", forKey: "feedKey")
+        
+        
+        
         
         
         
@@ -28,6 +32,8 @@ class Podcast: NSObject, Decodable, NSCoding {
         self.trackName = aDecoder.decodeObject(forKey: "trackNameKey") as? String
         self.artistName = aDecoder.decodeObject(forKey: "artistNameKey") as? String
         self.artworkUrl600 = aDecoder.decodeObject(forKey: "artworkKey") as? String
+        self.feedUrl = aDecoder.decodeObject(forKey: "feedKey") as? String
+        
     }
     
     
