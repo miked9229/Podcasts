@@ -24,7 +24,7 @@ class DownloadsController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        var episodes = UserDefaults.standard.downloadedEpisodes()
+        episodes = UserDefaults.standard.downloadedEpisodes()
         tableView.reloadData()
         
     }
