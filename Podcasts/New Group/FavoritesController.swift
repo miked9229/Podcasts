@@ -20,7 +20,6 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
         setupCollectionView()
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         podcasts = UserDefaults.standard.savedPodcasts()

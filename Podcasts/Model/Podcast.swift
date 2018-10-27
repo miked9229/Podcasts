@@ -19,11 +19,6 @@ class Podcast: NSObject, Decodable, NSCoding {
         aCoder.encode(feedUrl ?? "", forKey: "feedKey")
         
         
-        
-        
-        
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

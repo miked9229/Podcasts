@@ -12,6 +12,7 @@
 		923EFB092152D3770025FF8E /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923EFB082152D3770025FF8E /* UIApplication.swift */; };
 		92471098214F491D00F4CAE3 /* PlayerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92471097214F491D00F4CAE3 /* PlayerDetailsView.swift */; };
 		9256FEF1210D0E93008A107A /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9256FEF0210D0E93008A107A /* CMTime.swift */; };
+		9263ABDD21851AE700F4578A /* DownloadsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9263ABDC21851AE700F4578A /* DownloadsController.swift */; };
 		927E077E216D94C300D0EF04 /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927E077D216D94C300D0EF04 /* FavoritesController.swift */; };
 		927E078021702F9300D0EF04 /* FavoritePodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927E077F21702F9300D0EF04 /* FavoritePodcastCell.swift */; };
 		92B1E91820FA35B9001A1869 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B1E91720FA35B9001A1869 /* AppDelegate.swift */; };
@@ -64,6 +65,7 @@
 		923EFB082152D3770025FF8E /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		92471097214F491D00F4CAE3 /* PlayerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailsView.swift; sourceTree = "<group>"; };
 		9256FEF0210D0E93008A107A /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
+		9263ABDC21851AE700F4578A /* DownloadsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsController.swift; sourceTree = "<group>"; };
 		927E077D216D94C300D0EF04 /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
 		927E077F21702F9300D0EF04 /* FavoritePodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePodcastCell.swift; sourceTree = "<group>"; };
 		92B1E91420FA35B9001A1869 /* Podcasts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcasts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +206,7 @@
 				92B1E94B20FD7E60001A1869 /* PodcastsSearchController.swift */,
 				92B1E95C2103BF69001A1869 /* EpisodesController.swift */,
 				927E077D216D94C300D0EF04 /* FavoritesController.swift */,
+				9263ABDC21851AE700F4578A /* DownloadsController.swift */,
 			);
 			name = Controllers;
 			path = "New Group";
@@ -499,6 +502,7 @@
 				92B1E96C2106C393001A1869 /* PlayerDetailView.swift in Sources */,
 				92F9346B217BFAF000BCEAE7 /* UserDefaults.swift in Sources */,
 				92B1E96221052033001A1869 /* EpisodeCell.swift in Sources */,
+				9263ABDD21851AE700F4578A /* DownloadsController.swift in Sources */,
 				92B1E95221017014001A1869 /* APIService.swift in Sources */,
 				92B1E94F20FD7FDA001A1869 /* Podcast.swift in Sources */,
 				92B1E95F2103E3F5001A1869 /* Episode.swift in Sources */,
