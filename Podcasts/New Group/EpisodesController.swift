@@ -96,8 +96,6 @@ class EpisodesController: UITableViewController {
     
         showBadgeHighlight()
     
-    
-    
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "heart"), style: .plain, target: nil, action: nil)
             
             
@@ -127,6 +125,10 @@ class EpisodesController: UITableViewController {
             
         let episode = self.episodes[indexPath.row]
         UserDefaults.standard.downloadEpisode(episode: episode)
+            
+            
+            //Download the podcast using AlamoFire
+            APIService.shared.downloadEpisode(episode: episode)
         
         }
         
