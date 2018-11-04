@@ -29,7 +29,7 @@ class EpisodeCell: UITableViewCell {
         
         }
     }
-    
+    @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet var episodeImageView: UIImageView!
     @IBOutlet var pubDateLabel: UILabel!
     @IBOutlet var titleLabel: UILabel! {

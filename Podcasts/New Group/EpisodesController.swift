@@ -74,7 +74,6 @@ class EpisodesController: UITableViewController {
         
         // how to retrieve our Podcast from UserDefaults
         guard let data = UserDefaults.standard.data(forKey: UserDefaults.favoritedPodcastKey) else { return }
-//        let podcast = NSKeyedUnarchiver.unarchiveObject(with: data) as? Podcast
         
        let savedPodcasts = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Podcast]
         
