@@ -173,11 +173,9 @@
 				92B1E95321026153001A1869 /* Views */,
 				92B1E94A20FD7E37001A1869 /* Controllers */,
 				92B1E91720FA35B9001A1869 /* AppDelegate.swift */,
-				92B1E91920FA35B9001A1869 /* ViewController.swift */,
 				92B1E91E20FA35C2001A1869 /* Assets.xcassets */,
 				92B1E92020FA35C2001A1869 /* LaunchScreen.storyboard */,
 				92B1E92320FA35C2001A1869 /* Info.plist */,
-				92B1E94520FA38BA001A1869 /* MainTabBarController.swift */,
 			);
 			path = Podcasts;
 			sourceTree = "<group>";
@@ -203,6 +201,8 @@
 		92B1E94A20FD7E37001A1869 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				92B1E94520FA38BA001A1869 /* MainTabBarController.swift */,
+				92B1E91920FA35B9001A1869 /* ViewController.swift */,
 				92B1E94B20FD7E60001A1869 /* PodcastsSearchController.swift */,
 				92B1E95C2103BF69001A1869 /* EpisodesController.swift */,
 				927E077D216D94C300D0EF04 /* FavoritesController.swift */,
@@ -338,6 +338,7 @@
 				TargetAttributes = {
 					92B1E91320FA35B9001A1869 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -346,10 +347,12 @@
 					};
 					92B1E92720FA35C3001A1869 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 92B1E91320FA35B9001A1869;
 					};
 					92B1E93220FA35C3001A1869 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 92B1E91320FA35B9001A1869;
 					};
 				};
@@ -681,7 +684,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = www.google.com.Podcasts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -700,7 +703,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = www.google.com.Podcasts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -721,7 +724,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = www.google.com.PodcastsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Podcasts.app/Podcasts";
 			};
@@ -743,7 +746,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = www.google.com.PodcastsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Podcasts.app/Podcasts";
 			};
@@ -764,7 +767,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = www.google.com.PodcastsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Podcasts;
 			};
@@ -785,7 +788,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = www.google.com.PodcastsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Podcasts;
 			};

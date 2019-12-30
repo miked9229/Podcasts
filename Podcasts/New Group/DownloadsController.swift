@@ -34,7 +34,7 @@ class DownloadsController: UITableViewController {
     @objc fileprivate func handleDownloadComplete(notification: Notification) {
         guard let episodeDownloadComplete = notification.object as? APIService.EpisodeDownloadCompleteTuple else { return }
         
-        guard let index = self.episodes.index(where: {$0.title == episodeDownloadComplete.episodeTitle} ) else { return }
+        guard let index = self.episodes.firstIndex(where: {$0.title == episodeDownloadComplete.episodeTitle} ) else { return }
         
         self.episodes[index].fileUrl = episodeDownloadComplete.fileUrl
         
@@ -49,7 +49,7 @@ class DownloadsController: UITableViewController {
         guard let title = userInfo["title"] as? String else { return }
 
         // Lets find the index using title
-        guard let index = self.episodes.index(where: {$0.title == title} ) else { return }
+        guard let index = self.episodes.firstIndex(where: {$0.title == title} ) else { return }
         
         guard let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? EpisodeCell else { return }
         
@@ -117,8 +117,6 @@ class DownloadsController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! EpisodeCell
         cell.episode = episodes[indexPath.row]
-        
-        
         
         return cell
         

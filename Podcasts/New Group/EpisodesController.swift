@@ -52,7 +52,7 @@ class EpisodesController: UITableViewController {
         
         //Let's check if we have already saved the podcast as favorite
         let savedPodcasts = UserDefaults.standard.savedPodcasts()
-        let hasFavorited = savedPodcasts.index(where: {$0.trackName == self.podcast?.trackName && $0.artistName == self.podcast?.artistName}) != nil
+        let hasFavorited = savedPodcasts.firstIndex(where: {$0.trackName == self.podcast?.trackName && $0.artistName == self.podcast?.artistName}) != nil
         
         if hasFavorited {
             
@@ -136,7 +136,7 @@ class EpisodesController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
         activityIndicator.color = .darkGray
         activityIndicator.startAnimating()
         return activityIndicator

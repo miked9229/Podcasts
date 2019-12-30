@@ -88,10 +88,6 @@ class PlayerDetailView: UIView {
         player.replaceCurrentItem(with: playerItem)
         player.play()
         
-        
-        
-        
-        
     }
     
     let player: AVPlayer = {
@@ -102,7 +98,7 @@ class PlayerDetailView: UIView {
     
     fileprivate func observePlayerCurrentTime() {
        
-        let interval = CMTimeMake(1,2)
+        let interval = CMTimeMake(value: 1,timescale: 2)
         player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] (time) in
             self?.currentTimeLabel.text = time.toDisplayString()
             let duration = self?.player.currentItem?.duration
@@ -117,7 +113,7 @@ class PlayerDetailView: UIView {
     fileprivate func updateCurrentTimeSlider() {
         
         let currentTimeSeconds = CMTimeGetSeconds(player.currentTime())
-        let durationSeconds = CMTimeGetSeconds(player.currentItem?.duration ?? CMTimeMake(1, 1))
+        let durationSeconds = CMTimeGetSeconds(player.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1))
         let percentage = currentTimeSeconds / durationSeconds
         
         self.currentTimeSlider.value = Float(percentage)
@@ -161,7 +157,7 @@ class PlayerDetailView: UIView {
     fileprivate func setupAudioSession() {
         
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)))
             try AVAudioSession.sharedInstance().setActive(true)
             
         } catch let SessionErr {
@@ -275,7 +271,7 @@ class PlayerDetailView: UIView {
     }
     
     fileprivate func observeBoundaryTime() {
-        let time = CMTimeMake(1, 3)
+        let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
         player.addBoundaryTimeObserver(forTimes: times, queue: .main)
         { [weak self] in
@@ -299,7 +295,7 @@ class PlayerDetailView: UIView {
     
     fileprivate func setupInterruptionObserver() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleInterruption), name: .AVAudioSessionInterruption, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleInterruption), name: AVAudioSession.interruptionNotification, object: nil)
     }
     
     @objc fileprivate func handleInterruption(notification: NSNotification) {
@@ -312,7 +308,7 @@ class PlayerDetailView: UIView {
         
         guard let type = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt else { return }
         
-        if type == AVAudioSessionInterruptionType.began.rawValue {
+        if type == AVAudioSession.InterruptionType.began.rawValue {
             
             print("Interruption began....")
             
@@ -324,7 +320,7 @@ class PlayerDetailView: UIView {
             
             guard let options = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
             
-            if options == AVAudioSessionInterruptionOptions.shouldResume.rawValue {
+            if options == AVAudioSession.InterruptionOptions.shouldResume.rawValue {
                 
                 player.play()
                 playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
@@ -383,7 +379,7 @@ class PlayerDetailView: UIView {
         let percentage = currentTimeSlider.value
         let durationInSeconds = CMTimeGetSeconds(duration)
         let seekTimeInSeconds = Float64(percentage) * durationInSeconds
-        let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, Int32(NSEC_PER_SEC))
+        let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: Int32(NSEC_PER_SEC))
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = seekTimeInSeconds
         
@@ -404,7 +400,7 @@ class PlayerDetailView: UIView {
     
     fileprivate func seekToCurrentTime(delta: Int64) {
         
-        let fifteenSeconds = CMTimeMakeWithSeconds(Float64(delta), Int32(NSEC_PER_SEC))
+        let fifteenSeconds = CMTimeMakeWithSeconds(Float64(delta), preferredTimescale: Int32(NSEC_PER_SEC))
         let seekTime = CMTimeAdd(player.currentTime(), fifteenSeconds)
         player.seek(to: seekTime)
         
@@ -484,4 +480,9 @@ class PlayerDetailView: UIView {
         }
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

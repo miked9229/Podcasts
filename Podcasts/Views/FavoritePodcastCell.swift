@@ -23,7 +23,7 @@ class FavoritePodcastCell: UICollectionViewCell {
         
     }
     
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "appicon"))
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "heart"))
     let nameLabel = UILabel()
     let artistNameLabel = UILabel()
     

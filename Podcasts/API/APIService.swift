@@ -28,7 +28,6 @@ class APIService {
     
     static let shared = APIService()
     
-    
     public func downloadEpisode(episode: Episode) {
 
         
@@ -39,7 +38,6 @@ class APIService {
             // I want to notify DownloadsController about my download progress somehow
          
             NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episode.title ?? "", "progress":progress.fractionCompleted])
-            
             
             }.response { (resp) in
                 
@@ -52,7 +50,7 @@ class APIService {
                 // We want to update UserDefaults download episode with this temp file somehow
                 
                 var downloadedEpisodes = UserDefaults.standard.downloadedEpisodes()
-                guard let index = downloadedEpisodes.index(where: {$0.title == episode.title && $0.author == episode.author}) else { return }
+                guard let index = downloadedEpisodes.firstIndex(where: {$0.title == episode.title && $0.author == episode.author}) else { return }
                 
                 
                 downloadedEpisodes[index].fileUrl = resp.destinationURL?.absoluteString  ?? ""
@@ -76,7 +74,6 @@ class APIService {
         let secureFeedUrl = feedUrl.contains("https") ? feedUrl : feedUrl.replacingOccurrences(of: "http", with: "https")
         
         guard let url = URL(string: secureFeedUrl) else { return }
-        
         
         DispatchQueue.global(qos: .background).async {
             

@@ -25,13 +25,11 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
         podcasts = UserDefaults.standard.savedPodcasts()
         collectionView?.reloadData()
         
-        
         UIApplication.mainTabBarController()?.viewControllers?[1].tabBarItem.badgeValue = nil
     
     }
     
     fileprivate func setupCollectionView() {
-        
         
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         
